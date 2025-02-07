@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<!--DO NOT FORGET THIS SCRIPT TAG SO YOU CAN USE JQUERY!!!!!-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!--YOUR OWN JAVASCRIPT CAN GO RIGHT HERE-->
+	<script type="text/javascript">
+		function TestButtonHandler() {
+			var webMethod = "ProjectServices.asmx/TestConnection";
+			var parameters = "{}";
+
+			//jQuery ajax method
+			$.ajax({
+				type: "POST",
+				url: webMethod,
+				data: parameters,
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				success: function (msg) {
+					var responseFromServer = msg.d;
+					alert(responseFromServer);
+				},
+				error: function (e) {
+					alert("this code will only execute if javascript is unable to access the webservice");
+				}
+			});
+		}
+		
+	</script>
+	<!--END OF YOUR OWN JAVASCRIPT-->
+
+	<!--AND YOUR OWN CSS CAN GO HERE AS WELL-->
+	<style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 400px; margin: 10px; }
+        label, input, button { display: block; margin: 10px 0; }
+	</style>
+	<!--END OF YOUR OWN CSS-->
+</head >
+<body>
+	<button onclick="javascript: TestButtonHandler();">Click here to test connection!</button>
+
+	<div class="container">
+        <h2>Track Your Calories!</h2>
+        <form id="calorie-tracker">
+            <label for="weight">Weight:</label>
+            <input type="number" id="weight" required>
+			<select id="weight-unit">
+                <option value="kg">kg</option>
+                <option value="lbs">lbs</option>
+            </select>
+            
+            <label for="height">Height:</label>
+            <input type="number" id="height" required>
+			<select id="height-unit">
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+            </select>
+
+			<label for="water-intake">Water Intake:</label>
+            <input type="number" step="0.1" id="water-intake">
+			<select id="water-unit">
+                <option value="gal">L</option>
+                <option value="L">gal</option>
+            </select>
+            
+            <label for="calories-goal">Daily Calorie Goal:</label>
+            <input type="number" id="calories-goal" required>
+            
+            <label for="calorie-intake">Calorie Intake:</label>
+            <input type="number" id="calorie-intake">
+            
+            <button type="button">Calculate</button>
+        </form>
+    </div>
+</body>
+</html >
