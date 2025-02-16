@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -43,6 +43,7 @@
         }
         label {
             font-weight: bold;
+			font-size: 1.2em;
         }
         input, select, button {
             width: 100%;
@@ -88,9 +89,20 @@
 </head>
 <body>
     <button class="test-btn" onclick="javascript: TestButtonHandler();">Click here to test connection!</button>
+
     <div class="container">
         <h2>Track Your Calories!</h2>
+
         <form id="calorie-tracker">
+
+			<label for="fitness-goals">Fitness goals:</label>
+			<select name="fitness-goals" id="fitness-goals">
+				<option value="g1">Lose weight</option>
+				<option value="g2">Be healther</option>
+				<option value="g3">Eat a more well balanced diet</option>
+				<option value="g4">Gain muscle</option>
+			</select>
+
             <label for="weight">Weight:</label>
             <input type="number" id="weight" required>
             <select id="weight-unit">
