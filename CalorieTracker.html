@@ -21,6 +21,7 @@
 
 				if (remainingCalories <= 0) {
                     $("#celebration-message").show();
+					$("#reward-btn").show();
 					confettiCelebration();
                 }
             });
@@ -108,7 +109,12 @@
                 }
                 return color;
             }
-        }
+
+			$("#reward-btn").click(function () {
+			alert("🎁");
+			$(this).hide();
+			});	
+			}
     </script>
 
     <style>
@@ -242,10 +248,11 @@
             <input type="number" id="calorie-intake">
             
             <button type="button" id="calculate-btn">Calculate</button>
-        </form>
 
-	<p id="result"></p>
-        <p id="celebration-message">Congrats! Goal Reached! You've earned a reward! 🎉</p> 
+			<p id="result"></p>
+			<p id="celebration-message">Goal reached! You've earned a reward!</p> 
+			<button id="reward-btn" style="display: none;">Claim Your Reward</button>
+        </form>
     </div>
 </body>
 </html>
