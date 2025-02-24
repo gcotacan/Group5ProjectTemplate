@@ -119,6 +119,13 @@
 			function showAlert() {
             alert("Don't forget to workout today to earn a reward!");
        	 }
+
+            $(document).ready(function () {
+                $(".progress-box").click(function () {
+                    $(this).toggleClass("filled"); // Toggles color when clicked
+                 });
+            });
+
     </script>
 
     <style>
@@ -222,6 +229,39 @@
 		background: red;
 		color: white;
 		}
+
+        .progress-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #ddd;
+        }
+
+        .progress-box {
+        flex: 1; /* Ensures equal size for all boxes */
+        height: 30px;
+        border-right: 2px solid white; /* Creates separation between boxes */
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        }
+
+        .progress-box:last-child {
+         border-right: none; /* Removes right border from last box */
+        }
+
+        /* Gradient-based colors (Light Blue - Dark Blue) */
+        .progress-box.filled:nth-child(1) { background-color: #d0ebff; } /* Lightest Blue */
+        .progress-box.filled:nth-child(2) { background-color: #a3d8ff; }
+        .progress-box.filled:nth-child(3) { background-color: #76c4ff; }
+        .progress-box.filled:nth-child(4) { background-color: #4faaff; }
+        .progress-box.filled:nth-child(5) { background-color: #268cff; }
+        .progress-box.filled:nth-child(6) { background-color: #006bd6; }
+        .progress-box.filled:nth-child(7) { background-color: #0047a3; } /* Darkest Blue */
+
     </style>
 
 </head>
@@ -270,7 +310,19 @@
             
             <label for="calorie-intake">Calorie Intake:</label>
             <input type="number" id="calorie-intake">
-            
+
+            <h3>Weekly Achievement Tracker</h3>
+            <!-- Compact Progress Bar with 7 Clickable Boxes -->
+            <div class="progress-container">
+                <div class="progress-box"></div>
+                <div class="progress-box"></div>
+                <div class="progress-box"></div>
+                <div class="progress-box"></div>
+                <div class="progress-box"></div>
+                <div class="progress-box"></div>
+                 <div class="progress-box"></div>
+            </div>
+
             <button type="button" id="calculate-btn">Calculate</button>
 
 			<p id="result"></p>
