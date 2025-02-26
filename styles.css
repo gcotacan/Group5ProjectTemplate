@@ -1,0 +1,40 @@
+.weekly-progress-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 0;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-box {
+    flex: 1;
+    height: 30px;
+    border-right: 2px solid white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.progress-box:last-child {
+    border-right: none;
+}
+
+.progress-box.filled {
+    background-color: #4CAF50;
+}
+
+.weekly-stats {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+} 
