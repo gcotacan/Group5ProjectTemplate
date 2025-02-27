@@ -57,9 +57,6 @@
                 move: function() {
                     this.x += this.dx
                     this.y += this.dy
-                    if (this.x + this.r > width) { 
-                        this.dx = 0
-                    }
                     if (this.y + this.r > height) { 
                         this.dy = 0;
                     }
@@ -125,6 +122,18 @@
                     $(this).toggleClass("filled"); // Toggles color when clicked
                  });
             });
+
+			function setReminder() {
+            const reminderText = document.getElementById("reminderText").value;
+            const reminderTime = new Date(document.getElementById("reminderTime").value).getTime();
+            const currentTime = new Date().getTime();
+
+			document.getElementById("status").innerText = "Reminder set!";
+            
+            setTimeout(() => {
+                alert("Reminder: " + reminderText);
+            });
+        }
 
     </script>
 
@@ -210,26 +219,6 @@
             z-index: -1;
 		}
 
-		.notification {
-		background-color: #0056b3;
-		color: white;
-		text-decoration: none;
-		padding: 15px 26px;
-		position: relative;
-		display: inline-block;
-		border-radius: 2px;
-		}
-
-		.notification .badge {
-		position: absolute;
-		top: -10px;
-		right: -10px;
-		padding: 5px 10px;
-		border-radius: 50%;
-		background: red;
-		color: white;
-		}
-
         .progress-container {
         display: flex;
         justify-content: space-between;
@@ -279,7 +268,7 @@
 			<label for="fitness-goals">Fitness goals:</label>
 			<select name="fitness-goals" id="fitness-goals">
 				<option value="g1">Lose weight</option>
-				<option value="g2">Be healther</option>
+				<option value="g2">Be healthier</option>
 				<option value="g3">Eat a more well balanced diet</option>
 				<option value="g4">Gain muscle</option>
 			</select>
@@ -320,7 +309,7 @@
                 <div class="progress-box"></div>
                 <div class="progress-box"></div>
                 <div class="progress-box"></div>
-                 <div class="progress-box"></div>
+                <div class="progress-box"></div>
             </div>
 
             <button type="button" id="calculate-btn">Calculate</button>
@@ -328,10 +317,11 @@
 			<p id="result"></p>
 			<p id="celebration-message">Goal reached! You've earned a reward!</p> 
 			<button id="reward-btn" style="display: none;">Claim Your Reward</button>
-			<button class="notification" onclick="showAlert()">
-				<span>Reminders</span>
-				<span class="badge">1</span>
-			</button>
+
+			<input type="text" id="reminderText" placeholder="Enter a reminder">
+			<input type="datetime-local" id="reminderTime">
+			<button onclick="setReminder()">Set Reminder</button>
+			<p id="status"></p>
 	
         </form>
 
