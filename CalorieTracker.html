@@ -31,9 +31,54 @@
 					$("#reward-btn").show();
 					confettiCelebration();
                 }
-            });
-        });
 
+                calculateWeeklyStats();
+                generateChart(); // functions to generate progress charts
+            });
+
+
+        function calculateWeeklyStats() {
+            var totalCalories = 0;
+            var daysOnTrack = 0;
+            var filledBoxes = $(".progress-box.filled").length;
+
+            $("#calorie-intake").each(function () {
+                var intake = parseFloat($(this).val()) || 0;
+                totalCalories += intake;
+            });
+
+            var avgCalories = filledBoxes ? (totalCalories / filledBoxes).toFixed(2) : 0;
+            $("#avg-calories").text(avgCalories);
+            $("#days-on-track").text(filledBoxes);
+        }
+
+        function generateChart() {
+            var ctx = document.getElementById('weeklyChart').getContext('2d');
+            var data = Array.from($(".progress-box"), box => $(box).hasClass("filled") ? 1 : 0);
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Days On Track',
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1
+                        }
+                    }
+                }
+            });
+        }
+        
         function confettiCelebration() {
             var canvas  = document.getElementById("celebrationCanvas")
             var ctx     = canvas.getContext("2d")
